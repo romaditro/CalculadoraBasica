@@ -1,118 +1,150 @@
-var operandoa;
-var operandob;
-var operacion;
+//
+//visor
 
-function init(){
-	//variables
-	var resultado = document.getElementById('resultado');
-	var reset = document.getElementById('reset');
-	var suma = document.getElementById('suma');
-	var resta = document.getElementById('resta');
-	var multiplicacion = document.getElementById('multiplicacion');
-	var division = document.getElementById('division');
-	var igual = document.getElementById('igual');
-	var uno = document.getElementById('uno');
-	var dos = document.getElementById('dos');
-	var tres = document.getElementById('tres');
-	var cuatro = document.getElementById('cuatro');
-	var cinco = document.getElementById('cinco');
-	var seis = document.getElementById('seis');
-	var siete = document.getElementById('siete');
-	var ocho = document.getElementById('ocho');
-	var nueve = document.getElementById('nueve');
-	var cero = document.getElementById('cero');
+var operando_a = "";
+var operando_b = "";
+var operacion = "";
 
-	//eventos de click
-	uno.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "1";
-	}
-	dos.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "2";
-	}
-	tres.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "3";
-	}
-	cuatro.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "4";
-	}
-	cinco.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "5";
-	}
-	seis.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "6";
-	}
-	siete.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "7";
-	}
-	ocho.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "8";
-	}
-	nueve.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "9";
-	}
-	cero.onclick = function(e){
-  		resultado.textContent = resultado.textContent  + "0";
-	}
-	reset.onclick = function(e){
-  		resetear();
-	}
-	suma.onclick = function(e){
-  		operandoa = resultado.textContent;
-  		operacion = "+";
-  		limpiar();
-	}
-	resta.onclick = function(e){
-  		operandoa = resultado.textContent;
-  		operacion = "-";
-  		limpiar();
-	}
-	multiplicacion.onclick = function(e){
-  		operandoa = resultado.textContent;
-  		operacion = "*";
-  		limpiar();
-	}
-	division.onclick = function(e){
-  		operandoa = resultado.textContent;
-  		operacion = "/";
-  		limpiar();
-	}
-	igual.onclick = function(e){
-  		operandob = resultado.textContent;
-  		resolver();
-	}
+/*
+ *
+ */
+const limpiar = function() {
+    resultado.textContent = "";
+}
+
+/*
+ *
+ */
+const resetear = function() {
+    operando_a = 0;
+    operando_b = 0;
+    operacion = "";
+}
+
+/*
+ *
+ */
+const resolver = function(operando_a, operando_b, operacion) {
+    let resultado = 0;
+
+    switch (operacion) {
+        case "+":
+            resultado = parseFloat(operando_a) + parseFloat(operando_b);
+            break;
+
+        case "-":
+            resultado = parseFloat(operando_a) - parseFloat(operando_b);
+            break;
+
+        case "*":
+            resultado = parseFloat(operando_a) * parseFloat(operando_b);
+            break;
+
+        case "/":
+            resultado = parseFloat(operando_a) / parseFloat(operando_b);
+            break;
+    }
+
+    return resultado;
+}
+
+/*
+ *
+ */
+const inicializarCalculadora = function() {
+
+    let resultado = document.getElementById('resultado');
+
+    //acciones
+    let reset = document.getElementById('reset');
+    let suma = document.getElementById('suma');
+    let resta = document.getElementById('resta');
+    let multiplicacion = document.getElementById('multiplicacion');
+    let division = document.getElementById('division');
+    let igual = document.getElementById('igual');
+
+
+    //Digitos
+    let uno = document.getElementById('uno');
+    let dos = document.getElementById('dos');
+    let tres = document.getElementById('tres');
+    let cuatro = document.getElementById('cuatro');
+    let cinco = document.getElementById('cinco');
+    let seis = document.getElementById('seis');
+    let siete = document.getElementById('siete');
+    let ocho = document.getElementById('ocho');
+    let nueve = document.getElementById('nueve');
+    let cero = document.getElementById('cero');
+
+
+    //eventos de click
+    uno.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "1";
+        (operando_a == "") ? operando_a = "1": operando_b = "1";
+    }
+    dos.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "2";
+        (operando_a == "") ? operando_a = "2": operando_b = "2";
+    }
+    tres.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "3";
+        (operando_a == "") ? operando_a = "3": operando_b = "3";
+    }
+    cuatro.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "4";
+        (operando_a == "") ? operando_a = "4": operando_b = "4";
+    }
+    cinco.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "5";
+        (operando_a == "") ? operando_a = "5": operando_b = "5";
+    }
+    seis.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "6";
+        (operando_a == "") ? operando_a = "6": operando_b = "6";
+    }
+    siete.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "7";
+        (operando_a == "") ? operando_a = "7": operando_b = "7";
+    }
+    ocho.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "8";
+        (operando_a == "") ? operando_a = "8": operando_b = "8";
+    }
+    nueve.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "9";
+        (operando_a == "") ? operando_a = "9": operando_b = "9";
+    }
+    cero.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "0";
+        (operando_a == "") ? operando_a = "0": operando_b = "0";
+    }
+    reset.onclick = function(e) {
+        resultado.textContent = "";
+        resetear();
+    }
+
+    suma.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "+";
+        operacion = "+";
+    }
+    resta.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "-";
+        operacion = "-";
+    }
+    multiplicacion.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "*";
+        operacion = "*";
+    }
+    division.onclick = function(e) {
+        resultado.textContent = resultado.textContent + "/";
+        operacion = "/";
+    }
+    igual.onclick = function(e) {
+        resultado.textContent = "";
+        resultado.textContent = resolver(operando_a, operando_b, operacion);
+    }
+
 }
 
 
-function limpiar(){
-	resultado.textContent = "";
-}
-
-function resetear(){
-	resultado.textContent = "";
-	operandoa = 0;
-	operandob = 0;
-	operacion = "";
-}
-
-function resolver(){
-	var res = 0;
-	switch(operacion){
-		case "+":
-			res = parseFloat(operandoa) + parseFloat(operandob);
-			break;
-
-		case "-":
-		    res = parseFloat(operandoa) - parseFloat(operandob);
-		    break;
-
-		case "*":
-			res = parseFloat(operandoa) * parseFloat(operandob);
-			break;
-
-		case "/":
-			res = parseFloat(operandoa) / parseFloat(operandob);
-			break;
-	}
-	resetear();
-	resultado.textContent = res;
-}
+inicializarCalculadora();
